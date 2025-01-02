@@ -1,14 +1,19 @@
 package MoveNotepad;
 
-public interface MoveNotepad {
-    public void generate();
+import Model.Notepad;
+import Model.Recording;
 
-    public void open();
+public class MoveNotepad {
+    public void generate(String nameFile) {
+        
+    }
 
-    public void saveAs();
+    public void open(String nameFile) {
+        
+    }
 
-    public void save();
-
-    public void close();
+    public void closeMenu(){
+        
+    }
 
 }
