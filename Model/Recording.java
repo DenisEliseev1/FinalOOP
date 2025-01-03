@@ -2,15 +2,15 @@ package Model;
 
 
 public abstract class Recording {
-    private String number;
+    private int number;
     private String date;
     private String text;
 
-    public String getNumber() {
+    public int getNumber() {
 
         return number;
     }
-    public void setNumber(String number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 
