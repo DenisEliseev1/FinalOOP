@@ -1,13 +1,14 @@
 package Presenter;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 //import Model.Notepad;
 //import Model.Recording;
 import MoveNotepad.MoveNotepad;
 
-public class Presenter {
-    public void start() {
+public class Presenter  {
+    public void start() throws IOException, ClassNotFoundException {
         //Notepad<Recording> notepad = new Notepad<Recording>();
         MoveNotepad mn = new MoveNotepad();
         Scanner sc = new Scanner(System.in);
@@ -15,7 +16,7 @@ public class Presenter {
         System.out.println("Меню Notepad. Нажмите на клавиатуре оответсвующее действие:\n" +
                 "1 - Создать\n" +
                 "2 - Открыть\n" +
-                "3 - Закрыть меню\n");
+                "0 - Закрыть меню\n");
         int select = sc.nextInt();
         sc.reset();
         switch (select) {
@@ -33,7 +34,7 @@ public class Presenter {
                 sc.reset();
                 start();
                 break;
-            case 3:
+            case 0:
                 mn.closeMenu();
                 break;
 

@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 import Presenter.Presenter;
 /**
  * "Экспорт" и "Импорт" выделить в интерфейс (или абстракный метод????) внутри которого будет только кнопка экспорт и импорт, 
@@ -15,7 +17,7 @@ import Presenter.Presenter;
  * После создания и открытия должен реализовываться метод записи
  */
 public class Program {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         Presenter pr = new Presenter();
         pr.start();
     }

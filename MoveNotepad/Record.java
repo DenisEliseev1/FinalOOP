@@ -1,26 +1,31 @@
 package MoveNotepad;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import Model.Notepad;
 import Model.Recording;
 import Model.SimpleRecord;
+import Presenter.Presenter;
+import SaveAs.*;
 
 public class Record {
     private Scanner sc = new Scanner(System.in);
-    public Notepad <Recording> simpleNotepadRec (Notepad <Recording> notepad, String nameFile) {
+    private int select = 0;
+    private Presenter pr = new Presenter();
+    public Notepad <Recording> simpleNotepadRec (Notepad <Recording> notepad, String nameFile) throws IOException, ClassNotFoundException {
         System.out.println("Создание записи. Нажмите на клавиатуре оответсвующее действие:\n" +
         "1 - Создать строку\n" +
-        "2 - Закрыть меню\n");
-        int select = sc.nextInt();
+        "0 - Закрыть меню\n");
+        select = sc.nextInt();
         switch (select) {
             case 1:
                 notepad.add(simpleRecord(notepad));
                 sc.reset();
                 notepad = simpleNotepadRec(notepad, nameFile);
                 break;
-            case 2:
-                closeMenu (nameFile);
+            case 0:
+                closeMenu (nameFile, notepad);
                 break;
 
             default:
@@ -32,8 +37,35 @@ public class Record {
         sc.close();
         return notepad;
     }
-    public void closeMenu (String name) {
-        //запись в файл с выбранным имемнем/перезапись файла + возможность сохранить в другие форматы 
+    public void closeMenu (String nameFile, Notepad <Recording> notepad) throws IOException, ClassNotFoundException  {
+//запись в файл с выбранным имемнем/перезапись файла + возможность сохранить в другие форматы 
+        System.out.print("Завершение записи. Нажмите на клавиатуре соответсвующее действие:\n" +
+        "1 - Сохранить\n" +
+        "2 - Сохранить как\n" +
+        "0 - Закрыть (Не сохранять)\n" +
+        "Ваш выбор - ");
+        select = sc.nextInt();
+        switch (select) {
+            case 1:
+                //здесь будет метод сохранение в рабочий файл по умолчанию (нужно создать дополнительную "папку" для сохранения) 
+                WorkFile wf = new WorkFileStandart();
+                wf.exportFile (notepad, nameFile);
+                break;
+            case 2:
+                //здесь будет метод сохранения в другие форматы, кроме рабочего
+                break;
+            case 0:
+                System.out.println("Закрытие...");            
+            break;
+            default:
+            System.out.println("Некорректный выбор, попробуйте ещё раз");
+            sc.reset();
+            closeMenu (nameFile, notepad);
+            break;
+        }
+        sc.close();
+        pr.start();
+
     }
 
     public Recording simpleRecord (Notepad <Recording> notepad) {
