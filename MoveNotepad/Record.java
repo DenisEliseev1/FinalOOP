@@ -63,7 +63,7 @@ public class Record {
             closeMenu (nameFile, notepad);
             break;
         }
-        sc.close();
+        sc.reset();
         pr.start();
 
     }
@@ -90,6 +90,7 @@ public class Record {
         System.out.print("\nВведите текст - ");
         text = sc.next();
         sc.reset();
+        sr.setText (text);
         return sr;
     }
 }
